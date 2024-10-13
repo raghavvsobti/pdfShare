@@ -9,4 +9,6 @@ export const colors: string[] = [
 	"#C0C0C0", // Silver
 	"#cd0000", // Maroon
 	"#FFA500" // Orange
-  ];
+];
+  
+export const BASE_URL="http://localhost:3000"

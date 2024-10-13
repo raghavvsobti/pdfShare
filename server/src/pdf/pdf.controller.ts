@@ -35,7 +35,7 @@ export class PdfController {
             .fill(null)
             .map(() => Math.round(Math.random() * 16).toString(16))
             .join('');
-          cb(null, `${file.originalname}${fileExtName}`);
+          cb(null, `${randomName}${fileExtName}`);
         },
       }),
       fileFilter: (req, file, cb) => {

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { useUniversalState } from "../context/stateProvider";
 import { useEffect } from "react";
+import { BASE_URL } from "../../constants";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Header = () => {
 	const { isLoggedIn, setIsLoggedIn, setUser, user } = useUniversalState();
 
 	const logout = async () => {
-		await fetch(`http://localhost:3000/auth/logout`, {
+		await fetch(`${BASE_URL}/auth/logout`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

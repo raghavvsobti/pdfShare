@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { io, Socket } from 'socket.io-client';
-
-const SOCKET_SERVER_URL = 'http://localhost:3000';
+import { BASE_URL } from '../constants';
 
 export interface Message {
   pdf: string;
@@ -14,7 +13,7 @@ class SocketService {
   private socket: Socket;
 
   constructor() {
-    this.socket = io(SOCKET_SERVER_URL, {
+    this.socket = io(BASE_URL, {
       transports: ['websocket'],
     });
   }

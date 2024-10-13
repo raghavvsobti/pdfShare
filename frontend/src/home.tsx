@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUniversalState } from "./context/stateProvider";
 import { extractPdfFilename } from "./utils";
+import { BASE_URL } from "../constants";
 
 function Home() {
   const [file, setFile] = useState<File | null>();
@@ -42,7 +43,7 @@ function Home() {
     formData.append('userId', user?._id || JSON.parse(localStorage.getItem('data')!)?._id);
 
     try {
-      const response = await fetch('http://localhost:3000/pdf/upload', {
+      const response = await fetch(`${BASE_URL}/pdf/upload`, {
         method: 'POST',
         body: formData,
       });

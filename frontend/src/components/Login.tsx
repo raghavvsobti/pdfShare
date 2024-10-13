@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUniversalState } from "../context/stateProvider";
-
-const BASE_URL = "http://localhost:3000"
+import { BASE_URL } from "../../constants";
 
 const Signup = () => {
 	const { pathname } = useLocation();
