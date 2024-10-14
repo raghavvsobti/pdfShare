@@ -25,7 +25,7 @@ export class PdfService {
       resource_type: 'raw', // For non-image files like PDFs
     });
 
-    console.log(uploadResult, 'uploadResult');
+    // console.log(uploadResult, 'uploadResult');
 
     // Save to MongoDB
     const newPdf = new this.pdfModel({
@@ -33,7 +33,7 @@ export class PdfService {
       cloudinaryId: uploadResult.public_id,
     });
 
-    console.log(newPdf, 'newPdf');
+    // console.log(newPdf, 'newPdf');
     await newPdf.save();
 
     // Delete file from local after upload

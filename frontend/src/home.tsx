@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useUniversalState } from "./context/stateProvider";
 import { extractPdfFilename } from "./utils";
 import { BASE_URL } from "../constants";
+import { TypingAnimation } from "./components/TypingAnimation";
 
 function Home() {
   const [file, setFile] = useState<File | null>();
@@ -109,10 +110,10 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col w-full h-[80vh] mt-10 gap-7">
+    <div className="flex flex-col w-full h-full pt-24 overflow-clip">
       <div className="w-full flex flex-col justify-center items-center">
-        <h1 className="text-5xl">Share Document Online!</h1>
-        <small className="text-center ">Secure online document sharing for free!</small>
+        <TypingAnimation text="Share Document Online!" />
+        <p className="text-center mb-3">Secure online document sharing for free!</p>
       </div>
       <div
         className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-100 transition-colors"
@@ -137,15 +138,14 @@ function Home() {
           className="hidden"
           onChange={handleFileSelect}
         />
-        {/* </div> */}
       </div>
-      {pdfs?.length > 0 && <div className="py-4 w-full">
+      {pdfs?.length > 0 && <div className="py-4 w-full mt-2">
         <p className="font-semibold">Previously uploaded pdfs!</p>
-        <div className="grid grid-cols-12 bg-white p-3 rounded-md h-[24rem] place-content-start gap-4 overflow-auto">
+        <div className="grid grid-cols-12 bg-white p-3 rounded-md max-h-[24rem] place-content-start gap-2 overflow-auto">
           {pdfs?.map((item: string, index: number) => {
             return (
               <React.Fragment key={item?.toString() + index}>
-                <div className="h-fit">{index + 1}</div>
+                <div className="h-fit">{index + 1}.</div>
                 <span onClick={() => {
                   navigate("/pdf?url=" + item);
                   setUrl(item)

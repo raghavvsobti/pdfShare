@@ -10,6 +10,10 @@ export default {
     ],
   },
   theme: {
+    fontFamily: {
+      merriweather: ["Merriweather", "serif"],
+      comfortaa: ["Comfortaa", "serif"],
+    },
     extend: {},
   },
   plugins: [],

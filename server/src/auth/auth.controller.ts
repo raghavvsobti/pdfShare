@@ -47,7 +47,6 @@ export class AuthController {
     }
 
     if (!(await bcrypt.compare(password, user.password))) {
-      console.log(password, user.password);
       throw new BadRequestException('Password Error, check credentials!!');
     }
 

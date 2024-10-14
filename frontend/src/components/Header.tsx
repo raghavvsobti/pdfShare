@@ -1,12 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { useUniversalState } from "../context/stateProvider";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { BASE_URL } from "../../constants";
+import AnimatedGradientText from "./AnimatedGradientText";
 
 const Header = () => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
-	const isLoginPage = pathname === "/login";
+	const isLoginPage = useMemo(() => pathname === "/login", [pathname]);
 	const { isLoggedIn, setIsLoggedIn, setUser, user } = useUniversalState();
 
 	const logout = async () => {
@@ -39,16 +40,19 @@ const Header = () => {
 		}
 	}, [setUser, user])
 
-
 	return (
-		<div className="md:px-36 px-4 bg-gray-100 w-full">
-			<div className="flex justify-between">
-				<h1 className="md:text-3xl text-xl font-bold underline text-red-900 py-3 cursor-pointer" onClick={() => navigate("/")}>
-					Pdf Share!
-				</h1>
-				{isLoginPage ?
-					<> </> :
-					<button className="text-gray-800 hover:bg-gray-50 transition-all ease-in duration-100 bg-white px-4 py-1 font-semibold rounded-md my-2" onClick={() => !isLoggedIn ? navigate("/login") : logout()}>{isLoggedIn ? "Log out" : "Log in"}</button>}
+		<div className="md:px-36 mr-10 w-full">
+			<div className="fixed top-0 w-full">
+				<div className="flex justify-between w-full flex-wrap">
+					<span onClick={() => navigate("/")} className="w-fit">
+						<AnimatedGradientText>PdfShare</AnimatedGradientText>
+					</span>
+
+					{!isLoginPage && (
+						<button className="text-gray-800 mr-[17rem] hover:bg-gray-100 transition-all ease-in duration-100 bg-white px-4 py-1 font-semibold rounded-md my-2" onClick={() => !isLoggedIn ? navigate("/login") : logout()}>{isLoggedIn ? "Log out" : "Log in"}
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 	)

@@ -1,10 +1,10 @@
 export const colors: string[] = [
-	"#FF0000", // Red
+	"#AC8697", // Red
 	"#00FF00", // Green
-	"0000FF", // Blue
+	"6E75A8", // purple
 	"#FFFF00", // Yellow
 	"#FF00FF", // Magenta
-	"#00FFFF", // Cyan
+	"#C1EEFF", // Cyan
 	"#808080", // Gray
 	"#C0C0C0", // Silver
 	"#cd0000", // Maroon

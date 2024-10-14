@@ -1,23 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect, useCallback, useRef } from "react";
-import "../style/App.css";
+import { useEffect, useState } from "react";
 import { AreaHighlight, Content, Highlight, IHighlight, NewHighlight, PdfHighlighter, PdfLoader, Popup, ScaledPosition } from "../libs/react-pdf-highlighter/src";
+import "../style/App.css";
 import { Spinner } from './Spinner';
-// import { testHighlights } from "../interfaces/test-highlights";
-import { useUniversalState } from "../context/stateProvider";
 import { useNavigate } from "react-router-dom";
-import SocketService, { Message } from "../socket.service";
 import { colors } from '../../constants';
+import { useUniversalState } from "../context/stateProvider";
+import SocketService, { Message } from "../socket.service";
 import { removeDuplicates } from "../utils";
 
-// const _testHighlights: Record<string, Array<IHighlight>> = testHighlights;
 
 const getNextId = () => String(Math.random()).slice(2);
-
-const parseIdFromHash = () =>
-	document.location.hash.slice("#highlight-".length);
 
 const resetHash = () => {
 	document.location.hash = "";
@@ -66,37 +61,6 @@ export const Pdf = () => {
 			setUrl(searchParams.get("url"))
 		}
 	}, [url])
-
-	// const resetHighlights = () => {
-	// 	setHighlights([]);
-	// };
-
-	const scrollViewerTo = useRef((highlight: IHighlight) => {
-		console.log(highlight)
-		// Implement scrolling logic here
-	});
-
-	const scrollToHighlightFromHash = useCallback(() => {
-		const highlight = getHighlightById(parseIdFromHash());
-		if (highlight) {
-			scrollViewerTo.current(highlight);
-		}
-	}, []);
-
-	useEffect(() => {
-		window.addEventListener("hashchange", scrollToHighlightFromHash, false);
-		return () => {
-			window.removeEventListener(
-				"hashchange",
-				scrollToHighlightFromHash,
-				false,
-			);
-		};
-	}, [scrollToHighlightFromHash]);
-
-	const getHighlightById = (id: string) => {
-		return highlights.find((highlight) => highlight.id === id);
-	};
 
 	const addHighlight = (highlight: NewHighlight) => {
 		// console.log("Saving highlight", highlight);
@@ -164,25 +128,19 @@ export const Pdf = () => {
 		sendMessage()
 	}, [JSON.stringify(highlights), user])
 
-
 	return (
-		<>
+		<div className="pt-14">
 			<div className="flex my-2 justify-end flex-wrap group cursor-pointer">
 				{message?.watchers?.sort((a, b) => a.colorIndex - b.colorIndex)?.map((item, index) => {
-					console.log(colors[item?.colorIndex]?.toString()?.includes("#") ? colors[item?.colorIndex] : `#${colors[item?.colorIndex]}`, "lo")
 					return (
 						<p title={item?.name}
 							key={index}
-							// style={{
-							// 	border: "2px",
-							// 	borderColor: colors[item?.colorIndex]?.includes("#") ? colors[item?.colorIndex] : `#${colors[item?.colorIndex]}`
-							// }}
 							className={`rounded-full px-4 py-3 text-xs w-fit -mr-4 transition-all duration-200 ease-in group-hover:-mr-2 bg-gray-100 font-bold border-2 border-[${colors[item?.colorIndex]?.toString()?.includes("#") ? colors[item?.colorIndex] : `#${colors[item?.colorIndex]}`}]`}>{item?.name?.charAt(0)?.toUpperCase()}</p>
 					);
 				})}
 			</div>
 
-			<div className="App flex h-[78vh] rounded-md w-full border-2 border-gray-200 mb-10">
+			<div className="flex h-[80vh] rounded-md w-full border-2 border-gray-200">
 				<div className="w-full h-[100vh_-_55rem] relative overflow-auto">
 					<PdfLoader url={url} beforeLoad={<Spinner />}>
 						{(pdfDocument) => (
@@ -190,9 +148,7 @@ export const Pdf = () => {
 								pdfDocument={pdfDocument}
 								enableAreaSelection={(event) => event.altKey}
 								onScrollChange={resetHash}
-								scrollRef={(scrollTo) => {
-									scrollViewerTo.current = scrollTo;
-									scrollToHighlightFromHash();
+								scrollRef={() => {
 								}}
 								onSelectionFinished={(
 									position,
@@ -249,7 +205,7 @@ export const Pdf = () => {
 					</PdfLoader>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

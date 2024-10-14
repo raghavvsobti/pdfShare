@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -69,9 +70,9 @@ const Signup = () => {
 
 
 	return (
-		<div className="flex justify-center items-center w-full h-[80vh] bg-gradient-to-r from-gray-50 to-gray-50 ">
+		<div className="flex font-merriweather justify-center items-center w-full h-[80vh] bg-gradient-to-r from-gray-50 to-gray-50 ">
 			<div className="w-full max-w-lg">
-				<div className=" w-full rounded-lg mb-2 bg-gray-100 p-4 flex justify-center">
+				<div className=" w-full rounded-lg mb-2  bg-white p-4 flex justify-center">
 					<h1 className="text-2xl">{loginMode ? "SIGN IN" : "SIGN UP"}</h1>
 				</div>
 				<form
