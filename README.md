@@ -70,7 +70,7 @@ To simulate the experience of multiple users:
 ### Technologies Used
 
 - **Frontend**: React.js, leveraging libraries such as `react-pdf-highlighter`, `tailwindcss`, and `shadcn` for PDF highlighting functionality and UI design.
-- **Backend**: Nestjs, Express.js, Socket.IO
+- **Backend**: Nestjs, Express.js, Socket.IO, Cloudinary service for storing pdfs, MongoDB
 - **Real-time communication**: Socket.IO
 
 
