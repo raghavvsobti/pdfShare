@@ -10,7 +10,8 @@ import { AppGateway } from './gateway/app.gateway';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://raghavvsobtii:zMThRtsEGNILuXwN@pdf-share.6ukrq.mongodb.net/?retryWrites=true&w=majority&appName=pdf-share',
+      process.env.MONGO_URI ||
+        'mongodb+srv://raghavvsobtii:zMThRtsEGNILuXwN@pdf-share.6ukrq.mongodb.net/?retryWrites=true&w=majority&appName=pdf-share',
     ),
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     PdfModule,

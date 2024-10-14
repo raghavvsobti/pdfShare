@@ -46,6 +46,7 @@ const Signup = () => {
 			if (response?.ok) {
 				if (!loginMode) {
 					setLoginMode(true)
+					submitHandler(e);
 				}
 				const data = await response?.json();
 				if (data.message === "success") {
