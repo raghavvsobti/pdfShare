@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { AreaHighlight, Content, Highlight, IHighlight, NewHighlight, PdfHighlighter, PdfLoader, Popup, ScaledPosition } from "../libs/react-pdf-highlighter/src";
 import "../style/App.css";
 import { Spinner } from './Spinner';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { colors } from '../../constants';
 import { useUniversalState } from "../context/stateProvider";
 import SocketService, { Message } from "../socket.service";
@@ -29,7 +29,6 @@ const HighlightPopup = ({
 		</div>
 	) : null;
 
-const searchParams = new URLSearchParams(document.location.search);
 
 export const Pdf = () => {
 	const { url, setUrl, user, setUser } = useUniversalState()
@@ -53,10 +52,13 @@ export const Pdf = () => {
 		} else {
 			setUser(JSON.parse(user))
 		}
+		return () => {
+			setUrl(null);
+		}
 	}, [])
 
-
 	useEffect(() => {
+		const searchParams = new URLSearchParams(document.location.search);
 		if (!url) {
 			setUrl(searchParams.get("url"))
 		}
