@@ -1,6 +1,4 @@
 import { colors as myColors } from "./constants";
-const { createThemes } = require("tw-colors");
-const colors = require("tailwindcss/colors");
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
