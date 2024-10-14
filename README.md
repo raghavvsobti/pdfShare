@@ -73,6 +73,7 @@ To simulate the experience of multiple users:
 - **Backend**: Nestjs, Express.js, Socket.IO, Cloudinary service for storing pdfs, MongoDB
 - **Real-time communication**: Socket.IO
 
-![Screen Recording 2024-10-14 at 11 38 55 PM](https://github.com/user-attachments/assets/e2499b16-93a9-4122-a924-acdc303b67d9)
+![Screen Recording 2024-10-14 at 11 38 55 PM](https://github.com/user-attachments/assets/3b67b172-ced0-40bc-9540-7738d03e048e)
+
 
 
