@@ -1,4 +1,4 @@
-// import { StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import "react-pdf-highlighter/dist/style.css";
@@ -7,11 +7,11 @@ import App from './App.tsx';
 import StateProvider from './context/stateProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
-  <BrowserRouter>
-    <StateProvider>
-      <App />
-    </StateProvider>
-  </BrowserRouter>,
-  // </StrictMode>,
+  <StrictMode>
+    <BrowserRouter>
+      <StateProvider>
+        <App />
+      </StateProvider>
+    </BrowserRouter>,
+  </StrictMode>,
 )

@@ -151,7 +151,7 @@ export const Pdf = () => {
 
 
 	const sendMessage = () => {
-		if (user) {
+		if (user && highlights?.length > 0) {
 			SocketService.sendMessage({
 				pdf: url,
 				highlights: highlights ?? [],
