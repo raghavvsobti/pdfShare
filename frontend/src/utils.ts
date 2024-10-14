@@ -30,3 +30,11 @@ export /**
         // is the same as the key value of the first occurrence in the array.
         index === self.findIndex((t: any) => t[key] === item[key]),
     );
+
+
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}

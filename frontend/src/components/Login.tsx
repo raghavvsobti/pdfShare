@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUniversalState } from "../context/stateProvider";
 import { BASE_URL } from "../../constants";
+import AnimatedGradientText from "./AnimatedGradientText";
 
 const Signup = () => {
 	const { pathname } = useLocation();
@@ -70,10 +71,11 @@ const Signup = () => {
 
 
 	return (
-		<div className="flex font-merriweather justify-center items-center w-full h-[80vh] bg-gradient-to-r from-gray-50 to-gray-50 ">
+		<div className="flex font-merriweather justify-center items-center w-full h-[80vh] bg-gradient-to-r from-gray-50 to-gray-white ">
 			<div className="w-full max-w-lg">
-				<div className=" w-full rounded-lg mb-2  bg-white p-4 flex justify-center">
-					<h1 className="text-2xl">{loginMode ? "SIGN IN" : "SIGN UP"}</h1>
+				<div className=" w-full rounded-lg mb-2 p-4 flex justify-center">
+					{/* <h1 className="text-2xl">{loginMode ? "SIGN IN" : "SIGN UP"}</h1> */}
+					<AnimatedGradientText>PdfShare</AnimatedGradientText>
 				</div>
 				<form
 					onSubmit={submitHandler}

@@ -6,6 +6,7 @@ import { useUniversalState } from "./context/stateProvider";
 import { extractPdfFilename } from "./utils";
 import { BASE_URL } from "../constants";
 import { TypingAnimation } from "./components/TypingAnimation";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./components/Table";
 
 function Home() {
   const [file, setFile] = useState<File | null>();
@@ -112,8 +113,8 @@ function Home() {
   return (
     <div className="flex flex-col w-full h-full pt-24 overflow-clip">
       <div className="w-full flex flex-col justify-center items-center">
-        <TypingAnimation text="Share Document Online!" />
-        <p className="text-center mb-3">Secure online document sharing for free!</p>
+        <TypingAnimation text="Share Document Live!" />
+        <p className="text-center mb-3">Secure live document sharing for free!</p>
       </div>
       <div
         className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-100 transition-colors"
@@ -140,24 +141,32 @@ function Home() {
         />
       </div>
       {pdfs?.length > 0 && <div className="py-4 w-full mt-2">
-        <p className="font-semibold">Previously uploaded pdfs!</p>
-        <div className="grid grid-cols-12 bg-white p-3 rounded-md max-h-[24rem] place-content-start gap-2 overflow-auto">
-          {pdfs?.map((item: string, index: number) => {
-            return (
-              <React.Fragment key={item?.toString() + index}>
-                <div className="h-fit">{index + 1}.</div>
-                <span onClick={() => {
-                  navigate("/pdf?url=" + item);
-                  setUrl(item)
-                }}
-                  className="text-sky-800 h-fit hover:underline cursor-pointer col-span-11">
-                  {extractPdfFilename(item)}
-                </span>
-              </React.Fragment>
-            )
-          })}
-        </div>
+        <Table>
+          <TableCaption>Previously uploaded pdfs</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">#</TableHead>
+              <TableHead>link</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {pdfs?.map((item: string, index: number) => {
+              return (
+                <TableRow key={index + Date.now()}>
+                  <TableCell className="font-medium">
+                    {index + 1}
+                  </TableCell>
+                  <TableCell onClick={() => navigate(`/pdf?url=${item}`)} className="font-medium text-sky-800 h-fit hover:underline cursor-pointer">
+                    {extractPdfFilename(item)}
+                  </TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+
       </div>}
+
     </div>
   )
 }

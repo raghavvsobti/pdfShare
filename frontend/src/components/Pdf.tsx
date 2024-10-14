@@ -113,7 +113,6 @@ export const Pdf = () => {
 		};
 	}, [url]);
 
-
 	const sendMessage = () => {
 		if (user && highlights?.length > 0) {
 			SocketService.sendMessage({

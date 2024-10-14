@@ -12,7 +12,7 @@ interface TypingAnimationProps {
 
 export function TypingAnimation({
 	text,
-	duration = 200,
+	duration = 100,
 }: TypingAnimationProps) {
 	const [displayedText, setDisplayedText] = useState<string>("");
 	const [i, setI] = useState<number>(0);
@@ -33,7 +33,7 @@ export function TypingAnimation({
 	}, [duration, i]);
 
 	return (
-		<h1 className={"font-merriweather text-center text-4xl font-bold leading-[2rem] tracking-[-0.02em] drop-shadow-sm"}
+		<h1 className={"font-merriweather text-center text-3xl md:text-4xl font-bold leading-[2rem] tracking-[-0.02em] drop-shadow-sm"}
 		>
 			{displayedText ? displayedText : text}
 		</h1>
