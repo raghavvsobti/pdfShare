@@ -20,7 +20,6 @@ export interface Scaled {
   height: number;
 
   pageNumber?: number;
-  color: string;
 }
 
 export interface Position {

@@ -21,9 +21,22 @@ const Signup = () => {
 		}
 	}, [isLoggedIn])
 
+	const [autoLogin, setAutoLogin] = useState<boolean>(false);
 
-	const submitHandler = async (e: any) => {
-		e.preventDefault();
+	useEffect(() => {
+		if (autoLogin) {
+			submitHandler();
+		}
+
+		return () => {
+			setAutoLogin(false)
+		}
+	}, [autoLogin])
+
+
+
+	const submitHandler = async (e?: any) => {
+		e?.preventDefault();
 
 		const formData = new FormData();
 		formData.append('username', name);
@@ -46,7 +59,10 @@ const Signup = () => {
 			if (response?.ok) {
 				if (!loginMode) {
 					setLoginMode(true)
-					submitHandler(e);
+					setTimeout(() => {
+						setAutoLogin(true)
+					}, 100);
+					return;
 				}
 				const data = await response?.json();
 				if (data.message === "success") {
@@ -120,6 +136,10 @@ const Signup = () => {
 						<button
 							className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 							type="submit"
+							onClick={(e) => {
+								setLoginMode((prev) => !prev);
+								submitHandler(e)
+							}}
 						>
 							{loginMode ? "Sign In" : "Sign Up"}
 						</button>
@@ -127,10 +147,9 @@ const Signup = () => {
 				</form>
 				<div className="flex justify-center">
 					<button
-						type="submit"
-						onClick={(e) => {
+						type="button"
+						onClick={() => {
 							setLoginMode((prev) => !prev);
-							submitHandler(e)
 						}}
 						className="inline-block align-baseline hover:underline font-bold text-sm text-gray-500 hover:text-gray-800"
 					>
