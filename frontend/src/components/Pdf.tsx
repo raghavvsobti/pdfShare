@@ -2,14 +2,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { AreaHighlight, Content, Highlight, IHighlight, NewHighlight, PdfHighlighter, PdfLoader, Popup, ScaledPosition } from "../libs/react-pdf-highlighter/src";
-import "../style/App.css";
-import { Spinner } from './Spinner';
 import { useNavigate } from "react-router-dom";
 import { colors } from '../../constants';
 import { useUniversalState } from "../context/stateProvider";
+import { AreaHighlight, Content, Highlight, IHighlight, NewHighlight, PdfHighlighter, PdfLoader, Popup, ScaledPosition } from "../libs/react-pdf-highlighter/src";
 import SocketService, { Message } from "../socket.service";
+import "../style/App.css";
 import { removeDuplicates } from "../utils";
+import { Spinner } from './Spinner';
 
 
 const getNextId = () => String(Math.random()).slice(2);
@@ -131,14 +131,11 @@ export const Pdf = () => {
 
 	return (
 		<div className="pt-14">
-			<div className="flex my-2 justify-end flex-wrap group cursor-pointer">
-				{message?.watchers?.sort((a, b) => a.colorIndex - b.colorIndex)?.map((item, index) => {
-					return (
-						<p title={item?.name}
-							key={index}
-							className={`rounded-full px-4 py-3 text-xs w-fit -mr-4 transition-all duration-200 ease-in group-hover:-mr-2 bg-gray-100 font-bold border-2 border-[${colors[item?.colorIndex]?.toString()?.includes("#") ? colors[item?.colorIndex] : `#${colors[item?.colorIndex]}`}]`}>{item?.name?.charAt(0)?.toUpperCase()}</p>
-					);
-				})}
+			<div className="flex my-2 justify-end flex-wrap cursor-pointer space-x-2">
+				<button className="py-1 px-2 border-2 shadow-sm rounded-md font-light hover:bg-gray-100" onClick={() => navigator?.clipboard?.writeText(window.location.href)}>Copy to share</button>
+				<span className="group">
+					{message?.watchers && message?.watchers?.length > 0 ? message?.watchers?.sort((a, b) => a.colorIndex - b.colorIndex)?.map((item, index) => <WatcherTag item={item} key={item.name + index} />) : <WatcherTag item={user} />}
+				</span>
 			</div>
 
 			<div className="flex h-[80vh] rounded-md w-full border-2 border-gray-200">
@@ -211,3 +208,9 @@ export const Pdf = () => {
 }
 
 
+const WatcherTag = ({ item }: { item: { name?: string; username?: string; colorIndex: number } }) => {
+	return (
+		<p title={item?.name || item?.username}
+			className={`rounded-full px-4 py-3 text-xs w-fit -mr-4 transition-all duration-200 ease-in group-hover:-mr-2 bg-gray-100 font-bold border-2 border-[${colors[item?.colorIndex]?.toString()?.includes("#") ? colors[item?.colorIndex] : `#${colors[item?.colorIndex]}`}]`}>{(item?.name || item?.username)?.charAt(0)?.toUpperCase()}</p>
+	)
+}
