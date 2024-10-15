@@ -33,8 +33,6 @@ const Signup = () => {
 		}
 	}, [autoLogin])
 
-
-
 	const submitHandler = async (e?: any) => {
 		e?.preventDefault();
 
