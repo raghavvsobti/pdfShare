@@ -29,14 +29,13 @@ Before running the app, make sure you have:
 Create a `.env` file in the root directory of the project with the following content:
 
 # Backend server configuration
-
-CLOUDINARY_CLOUD_NAME='raghavvsobtii'
-CLOUDINARY_API_KEY='986668736571861'
-CLOUDINARY_API_SECRET='4SrAi2vOQonZqfan3udvws4M3Ek'
-CLOUDINARY_URL="cloudinary://986668736571861:4SrAi2vOQonZqfan3udvws4M3Ek@raghavvsobtii"
-BASE_URL="http://localhost:3000"
-MONGO_URI="mongodb+srv://raghavvsobtii:zMThRtsEGNILuXwN@pdf-share.6ukrq.mongodb.net/?retryWrites=true&w=majority&appName=pdf-share"
-
+```
+   CLOUDINARY_CLOUD_NAME='raghavvsobtii'
+   CLOUDINARY_API_KEY='986668736571861'
+   CLOUDINARY_API_SECRET='4SrAi2vOQonZqfan3udvws4M3Ek'
+   CLOUDINARY_URL="cloudinary://986668736571861:4SrAi2vOQonZqfan3udvws4M3Ek@raghavvsobtii"
+   MONGO_URI="mongodb+srv://raghavvsobtii:zMThRtsEGNILuXwN@pdf-share.6ukrq.mongodb.net/?retryWrites=true&w=majority&appName=pdf-share"
+ ```
 ### Installation & Running the App
 
 1. **Clone the repository:**
