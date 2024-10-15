@@ -3,26 +3,33 @@
 This project is a collaborative PDF highlighter application, where multiple users can upload and view the same PDF document. Each user can highlight text, and their highlights will be visible to all other connected users in real-time, with each user's highlights appearing in a unique color. The application uses **Socket.IO** for real-time communication between users.
 
 ## Features
+
 - **Real-time collaboration:** Users can view the same PDF and see each other's highlights instantly.
 - **User-specific colors:** Each user's highlights are displayed in a unique color.
 - **Secure authentication:** Users must sign up and log in to interact with the application.
 
 ## Project Structure
+
 The project is divided into two main parts:
+
 - **Frontend:** React-based interface for user interaction.
 - **Backend:** Nest js server using **Socket.IO** for real-time communication and other backend logic.
 
 ## Getting Started
 
 ### Prerequisites
+
 Before running the app, make sure you have:
+
 - Node.js installed on your system.
 - Installed dependencies for both the frontend and backend.
 
 ### Environment Variables
+
 Create a `.env` file in the root directory of the project with the following content:
 
 # Backend server configuration
+
 CLOUDINARY_CLOUD_NAME='raghavvsobtii'
 CLOUDINARY_API_KEY='986668736571861'
 CLOUDINARY_API_SECRET='4SrAi2vOQonZqfan3udvws4M3Ek'
@@ -30,27 +37,40 @@ CLOUDINARY_URL="cloudinary://986668736571861:4SrAi2vOQonZqfan3udvws4M3Ek@raghavv
 BASE_URL="http://localhost:3000"
 MONGO_URI="mongodb+srv://raghavvsobtii:zMThRtsEGNILuXwN@pdf-share.6ukrq.mongodb.net/?retryWrites=true&w=majority&appName=pdf-share"
 
-
 ### Installation & Running the App
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository_url>
    cd <repository_directory>
 
+   ```
+
 2. Open a terminal window, navigate to the frontend folder, and install dependencies:
-  ```  
-  cd frontend/
-  npm install
-  npm run build
-  npm run dev
+
 ```
+cd frontend/
+npm install
+npm run build
+npm run dev
+```
+
 3. In a new terminal window, navigate to the server folder and install dependencies:
+
 ```
 cd server/
 npm install
 npm run build
 npm run start:dev
+```
+
+# Use Docker (Alternatively)
+
+run docker app
+
+```
+docker-compose up --build
 ```
 
 ### User Guide
@@ -74,6 +94,3 @@ To simulate the experience of multiple users:
 - **Real-time communication**: Socket.IO
 
 ![Screen Recording 2024-10-14 at 11 38 55 PM](https://github.com/user-attachments/assets/3b67b172-ced0-40bc-9540-7738d03e048e)
-
-
-
