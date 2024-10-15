@@ -54,17 +54,19 @@ const Signup = () => {
 				}),
 			});
 
+			console.log(response);
+
 			// Check if the response is in the correct format before parsing
 			if (response?.ok) {
+				if (!loginMode) {
+					setTimeout(() => {
+						setAutoLogin(true)
+					}, 100);
+					setLoginMode(true)
+					return;
+				}
 				const data = await response?.json();
 				if (data.message === "success") {
-					if (!loginMode) {
-						setLoginMode(true)
-						setTimeout(() => {
-							setAutoLogin(true)
-						}, 100);
-						return;
-					}
 					localStorage.setItem("token", data?.jwt);
 					localStorage.setItem("user", data?.user?.username);
 					localStorage.setItem("pdfs", data?.user?.pdfs);
