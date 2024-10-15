@@ -5,12 +5,14 @@ import Body from './components/Body';
 import Login from './components/Login';
 import { Pdf } from './components/Pdf';
 import NotFound from './components/Notfound';
+import { HyperToast } from './components/sonner';
 
 function App() {
 	return (
 		<>
 			<Header />
 			<Body>
+				<HyperToast richColors pauseWhenPageIsHidden closeButton />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/pdf" element={<Pdf />} />

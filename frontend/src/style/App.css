@@ -1,10 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  background-color: rgb(249 250 251);
-  color: #000000;
+  height: 100%;
+  /* background-color: rgb(249 250 251); */
+  color: hsl(0, 0%, 0%);
 }
 
 .sidebar {
@@ -61,4 +59,12 @@ blockquote:before {
 }
 blockquote:after {
   content: close-quote;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

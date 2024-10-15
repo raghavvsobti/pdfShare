@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useUniversalState } from "../context/stateProvider";
 import { BASE_URL } from "../../constants";
 import AnimatedGradientText from "./AnimatedGradientText";
+import { toast } from "sonner";
 
 const Signup = () => {
 	const { pathname } = useLocation();
@@ -55,15 +56,15 @@ const Signup = () => {
 
 			// Check if the response is in the correct format before parsing
 			if (response?.ok) {
-				if (!loginMode) {
-					setLoginMode(true)
-					setTimeout(() => {
-						setAutoLogin(true)
-					}, 100);
-					return;
-				}
 				const data = await response?.json();
 				if (data.message === "success") {
+					if (!loginMode) {
+						setLoginMode(true)
+						setTimeout(() => {
+							setAutoLogin(true)
+						}, 100);
+						return;
+					}
 					localStorage.setItem("token", data?.jwt);
 					localStorage.setItem("user", data?.user?.username);
 					localStorage.setItem("pdfs", data?.user?.pdfs);
@@ -72,12 +73,14 @@ const Signup = () => {
 					localStorage.setItem("data", JSON.stringify(data.user));
 					setUser(data.user);
 					setIsLoggedIn(true);
+					toast.success("Logged in successfully!")
 					navigate("/");
 				}
 			} else {
 				// Handle cases where the response is not OK
-				const errorText = await response.text();
-				console.error("Error response: ", errorText);
+				const error = await response.json();
+				console.error("Error response: ", error);
+				toast.error(`${error?.message}!`)
 			}
 		} catch (error) {
 			console.error("Error: ", error);
@@ -86,7 +89,7 @@ const Signup = () => {
 
 
 	return (
-		<div className="flex font-merriweather justify-center items-center w-full h-[80vh] bg-gradient-to-r from-gray-50 to-gray-white ">
+		<div className="flex font-merriweather justify-center items-center w-full h-[80vh]">
 			<div className="w-full max-w-lg">
 				<div className=" w-full rounded-lg mb-2 p-4 flex justify-center">
 					<AnimatedGradientText>PdfShare</AnimatedGradientText>
@@ -134,7 +137,6 @@ const Signup = () => {
 							className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 							type="submit"
 							onClick={(e) => {
-								setLoginMode((prev) => !prev);
 								submitHandler(e)
 							}}
 						>

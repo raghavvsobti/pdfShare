@@ -117,7 +117,7 @@ function Home() {
         <p className="text-center mb-3">Secure live document sharing for free!</p>
       </div>
       <div
-        className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-100 transition-colors"
+        className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-50/40 transition-colors"
         onClick={handleButtonClick}
         onDrop={handleDrop}
         onDragOver={handleDragOver}

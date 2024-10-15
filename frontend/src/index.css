@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply text-gray-800 m-0;
+.bg-blueshade {
+  @apply bg-cover bg-center;
+  background-image: url("./assets/blueShade.jpg");
+}
+
+:root {
+  @apply bg-cover bg-center;
+  background-image: url("./assets/blueShade.jpg");
+  background-blend-mode: lighten;
+  overflow-y: clip;
 }

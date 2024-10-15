@@ -10,6 +10,7 @@ import SocketService, { Message } from "../socket.service";
 import "../style/App.css";
 import { removeDuplicates } from "../utils";
 import { Spinner } from './Spinner';
+import { toast } from "sonner";
 
 
 const getNextId = () => String(Math.random()).slice(2);
@@ -130,15 +131,18 @@ export const Pdf = () => {
 	}, [JSON.stringify(highlights), user])
 
 	return (
-		<div className="pt-14">
+		<div className="pt-4">
 			<div className="flex my-2 justify-end flex-wrap cursor-pointer space-x-2">
-				<button className="py-1 px-2 border-2 shadow-sm rounded-md font-light hover:bg-gray-100" onClick={() => navigator?.clipboard?.writeText(window.location.href)}>Copy to share</button>
+				<button className="py-1 px-2 border-2 shadow-sm rounded-md font-light hover:bg-gray-100" onClick={() => {
+					navigator?.clipboard?.writeText(window.location.href);
+					toast.success("copied link to share pdf!")
+				}}>Copy to share</button>
 				<span className="group">
 					{message?.watchers && message?.watchers?.length > 0 ? message?.watchers?.sort((a, b) => a.colorIndex - b.colorIndex)?.map((item, index) => <WatcherTag item={item} key={item.name + index} />) : <WatcherTag item={user} />}
 				</span>
 			</div>
 
-			<div className="flex h-[80vh] rounded-md w-full border-2 border-gray-200">
+			<div className="flex h-[80vh] rounded-md mt-5">
 				<div className="w-full h-[100vh_-_55rem] relative overflow-auto">
 					<PdfLoader url={url} beforeLoad={<Spinner />}>
 						{(pdfDocument) => (

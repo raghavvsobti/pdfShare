@@ -41,20 +41,22 @@ const Header = () => {
 	}, [setUser, user])
 
 	return (
-		<div className="md:px-36 mr-10 w-full">
-			<div className="fixed top-0 w-full">
-				{!isLoginPage && (
-					<div className="flex justify-between w-full">
-						<span onClick={() => navigate("/")} className="w-fit">
-							<AnimatedGradientText>PdfShare</AnimatedGradientText>
-						</span>
+		<>
+			{!isLoginPage && (
+				<div className="md:px-36 mr-10 w-full">
+					<div className="w-full">
+						<div className="flex justify-between w-full">
+							<span onClick={() => navigate("/")} className="w-fit">
+								<AnimatedGradientText>PdfShare</AnimatedGradientText>
+							</span>
 
-						<button className="text-gray-800 mr-2 md:mr-[17rem] hover:bg-gray-100 transition-all ease-in duration-100 bg-white px-4 py-1 font-semibold rounded-md my-2" onClick={() => !isLoggedIn ? navigate("/login") : logout()}>{isLoggedIn ? "Log out" : "Log in"}
-						</button>
+							<button className="text-gray-800 mr-2 hover:bg-gray-100 transition-all ease-in duration-100 bg-white px-4 py-1 font-semibold rounded-md my-2" onClick={() => !isLoggedIn ? navigate("/login") : logout()}>{isLoggedIn ? "Log out" : "Log in"}
+							</button>
+						</div>
 					</div>
-				)}
-			</div>
-		</div>
+				</div>
+			)}
+		</>
 	)
 }
 
