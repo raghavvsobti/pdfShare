@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: react-frontend
+    ports:
+      - "3000:80" # Expose port 3000 for frontend access (via Nginx on port 80)
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./server
+    container_name: nest-backend
+    ports:
+      - "5173:3000" # Expose port 5173 for backend access (Nest.js on port 3000)
+    environment:
+      - NODE_ENV=production

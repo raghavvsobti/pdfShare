@@ -1,0 +1,23 @@
+# Use node image as base
+FROM node:18
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy all source files to the container
+COPY . .
+
+# Build the Nest.js app
+RUN npm run build
+
+RUN npm rebuild bcrypt --build-from-source
+
+# Expose port 3000 for the Nest.js API
+EXPOSE 3000
+
+# Start the Nest.js application
+CMD ["npm", "run", "start:prod"]
