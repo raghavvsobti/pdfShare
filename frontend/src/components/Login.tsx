@@ -12,9 +12,10 @@ const Signup = () => {
 	const [loginMode, setLoginMode] = useState<boolean>(pathname === "/login");
 	const [name, setName] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-	const navigate = useNavigate()
-
+	const [autoLogin, setAutoLogin] = useState<boolean>(false);
 	const { setUser, setIsLoggedIn, isLoggedIn } = useUniversalState()
+
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		if (isLoggedIn) {
@@ -22,7 +23,6 @@ const Signup = () => {
 		}
 	}, [isLoggedIn])
 
-	const [autoLogin, setAutoLogin] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (autoLogin) {
