@@ -133,7 +133,7 @@ export const Pdf = () => {
 	return (
 		<div className="pt-4">
 			<div className="flex my-2 justify-end flex-wrap cursor-pointer space-x-2">
-				<span className="group mr-4">
+				<span className="group mr-4 flex">
 					{message?.watchers && message?.watchers?.length > 0 ? message?.watchers?.sort((a, b) => a.colorIndex - b.colorIndex)?.map((item, index) => <WatcherTag item={item} key={item.name + index} />) : <WatcherTag item={user} />}
 				</span>
 				<button className="py-1 px-2 border-2 shadow-sm rounded-md font-light hover:bg-gray-100" onClick={() => {
