@@ -30,11 +30,11 @@ Create a `.env` file in the root directory of the project with the following con
 
 # Backend server configuration
 ```
-   CLOUDINARY_CLOUD_NAME='raghavvsobtii'
-   CLOUDINARY_API_KEY='986668736571861'
-   CLOUDINARY_API_SECRET='4SrAi2vOQonZqfan3udvws4M3Ek'
-   CLOUDINARY_URL="cloudinary://986668736571861:4SrAi2vOQonZqfan3udvws4M3Ek@raghavvsobtii"
-   MONGO_URI="mongodb+srv://raghavvsobtii:zMThRtsEGNILuXwN@pdf-share.6ukrq.mongodb.net/?retryWrites=true&w=majority&appName=pdf-share"
+   CLOUDINARY_CLOUD_NAME=''
+   CLOUDINARY_API_KEY=''
+   CLOUDINARY_API_SECRET=''
+   CLOUDINARY_URL=""
+   MONGO_URI=""
  ```
 ### Installation & Running the App
 
